@@ -6,6 +6,12 @@ if ! bashio::fs.directory_exists /share/prometheus/targets; then
   chown -R prometheus:prometheus /share/prometheus/targets
 fi
 
+f ! bashio::fs.directory_exists /share/prometheus/remote_write; then
+  mkdir -p /share/prometheus/remote_write
+  chown -R prometheus:prometheus /share/prometheus/remote_write
+fi
+
+
 cd /opt/prometheus-configgen || bashio::exit.nok \
   "Could not change working directory for prometheus-configgen."
 
